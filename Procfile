@@ -1,1 +1,1 @@
-web: gunicorn raffle.wsgi
+web: ./manage.py runserver
