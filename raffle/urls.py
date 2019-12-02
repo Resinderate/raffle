@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from tickets.views import SessionView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', SessionView.as_view()),
 ]
