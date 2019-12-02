@@ -1,1 +1,1 @@
-web: ./manage.py runserver
+web: gunicorn raffle.wsgi --log-file -
