@@ -7,5 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('raffle/', ClassListView.as_view()),
     path('raffle/<slug:class>/', ClassSessionListView.as_view()),
-    path('raffle/<slug:class_slug>/<slug:session_slug>/', SessionView.as_view()),
+    path('raffle/<slug:class>/<slug:session>/', SessionView.as_view()),
 ]

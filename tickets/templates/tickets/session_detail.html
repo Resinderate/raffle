@@ -16,50 +16,24 @@
     <div class="container">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#" class="text-white">Home</a></li>
-            <li class="breadcrumb-item"><a href="#" class="text-white">Year 7</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><span class="text-white">Week 1</span></li>
+            <li class="breadcrumb-item"><a href="/raffle/" class="text-white">Home</a></li>
+            <li class="breadcrumb-item"><a href="/raffle/{{ session.session_class.slug }}/" class="text-white">{{session.session_class.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><span class="text-white">{{ session.name }}</span></li>
           </ol>
         </nav>
         <div id="title">
             <h1 class="display-4 text-white text-center">Ms Andrews</h1>
-            <h2 class="display-4 text-white text-center">Raffle Tickets for Week 1</h2>
+            <h2 class="display-4 text-white text-center">Raffle Tickets for {{ session.name }}</h2>
         </div>
 
         <table class="table table-hover text-white">
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>RM</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>JT</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>OGS</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>AC</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>JG</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>RA</td>
-            </tr>
-            <tr>
-              <th scope="row">7</th>
-              <td>AP</td>
-            </tr>
-            <tr>
-              <th scope="row">8</th>
-              <td>WR</td>
-            </tr>
+            {% for rank in rankings %}
+                <tr>
+                  <th scope="row">{{ rank.position }}</th>
+                  <td>{{ rank.name }}</td>
+                </tr>
+            {% endfor %}
           </tbody>
         </table>
     </div>
