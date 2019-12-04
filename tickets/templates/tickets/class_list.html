@@ -19,13 +19,11 @@
             <li class="breadcrumb-item active"><a href="/raffle/" class="text-white">Home</a></li>
           </ol>
         </nav>
-        <div id="title">
-            <h1 class="display-4 text-white text-center">Ms Andrews</h1>
-            <h2 class="display-4 text-white text-center">Class List:</h2>
-        </div>
+        <h1 class="display-4 text-white text-center">Ms Andrews</h1>
+        <h2 class="display-4 text-white text-center">Class List:</h2>
 
         {% for class in classes %}
-          <a href="/raffle/{{ class.slug }}/" class="text-white">{{ class.name }}</p>
+          <h3><a href="/raffle/{{ class.slug }}/" class="text-white">• {{ class.name }}</a></h3>
         {% endfor %}
         </table>
     </div>
