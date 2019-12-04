@@ -1,16 +1,22 @@
 from django.db import models
 
 
-class Player(models.Model):
+class Class(models.Model):
     name = models.CharField(max_length=100)
+    color = models.CharField(max_length=20)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name
 
 
-class Class(models.Model):
+class Player(models.Model):
     name = models.CharField(max_length=100)
-    color = models.CharField(max_length=20)
+    player_class = models.ForeignKey(Class, null=True, on_delete=models.SET_NULL, related_name="players")
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Session(models.Model):
@@ -18,6 +24,7 @@ class Session(models.Model):
     session_class = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="sessions")
     created_at = models.DateTimeField(auto_now_add=True)
     finished_at = models.DateTimeField(null=True, blank=True)
+    slug = models.SlugField()
 
     def __str__(self):
         return self.name
