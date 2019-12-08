@@ -1,3 +1,5 @@
+import random
+
 from django.views.generic import ListView, DetailView
 
 from tickets.models import Session, Class
@@ -57,4 +59,18 @@ class SessionView(DetailView):
             rankings[i]["position"] = p
 
         context["rankings"] = rankings
+
+        draw_a_name = bool(self.request.GET.get("draw", False))
+
+        draw_available = len(all_tickets_for_session) > 0
+        context["draw_available"] = draw_available
+        if not draw_available:
+            # Can't draw a name if it's not available
+            draw_a_name = False
+
+        if draw_a_name:
+            tickets = [ticket.player.name for ticket in all_tickets_for_session]
+            winner = random.choice(tickets)
+            context["winner"] = winner
+
         return context

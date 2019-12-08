@@ -2,6 +2,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="shortcut icon" href="/static/tickets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/tickets/favicon.ico" type="image/x-icon">
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,17 +28,27 @@
             <h1 class="display-4 text-white text-center">Ms Andrews</h1>
             <h2 class="display-4 text-white text-center">Raffle Tickets for {{ session.name }}</h2>
         </div>
-
-        <table class="table table-hover text-white">
-          <tbody>
-            {% for rank in rankings %}
-                <tr>
-                  <th scope="row">{{ rank.position }}</th>
-                  <td>{{ rank.name }}</td>
-                </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="row justify-content-center">
+            {% if winner %}
+                <h3 class="display-6 text-white">Player Picked: {{ winner }} | <a class="btn btn-light" href="?draw=y" role="button">Re-Draw Name</a></h3>
+            {% elif draw_available%}
+                <p><a class="btn btn-light" href="?draw=y" role="button">Draw Name</a></p>
+            {% endif %}
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <table class="table table-hover text-white">
+                  <tbody>
+                    {% for rank in rankings %}
+                        <tr>
+                          <th scope="row">{{ rank.position }}</th>
+                          <td>{{ rank.name }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
