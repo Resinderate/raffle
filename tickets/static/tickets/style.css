@@ -15,6 +15,29 @@ body {
     color: white;
 }
 
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: rgba(0, 0, 0, .2);
+
+.table-hover tbody tr td .ticket-control {
+  visibility: hidden;
 }
+
+.table-hover tbody tr:hover td .ticket-control {
+  /*background-color: rgba(0, 0, 0, .2);*/
+  visibility: visible;
+}
+
+
+
+.ticket-control {
+    float: right;
+}
+
+.ticket-control i {
+    cursor: pointer;
+}
+
+.ticket-control input[type=number] {
+    height: 1.5em;
+    width: 2.5em;
+}
+
+.ticket-control:hover 

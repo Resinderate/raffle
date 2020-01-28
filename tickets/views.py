@@ -46,7 +46,10 @@ class SessionView(DetailView):
         context = super().get_context_data(**kwargs)
         all_players_from_class = self.class_.players.all()
         all_tickets_for_session = self.session.tickets.all()
-        ticket_counts = {player.id: {"name": player.name, "count": 0} for player in all_players_from_class}
+        ticket_counts = {
+            player.id: {"name": player.name, "id": player.slug, "count": 0}
+            for player in all_players_from_class
+        }
         for ticket in all_tickets_for_session:
             ticket_counts[ticket.player_id]["count"] += 1
 
@@ -72,5 +75,10 @@ class SessionView(DetailView):
             tickets = [ticket.player.name for ticket in all_tickets_for_session]
             winner = random.choice(tickets)
             context["winner"] = winner
+
+        # pass the session name?
+        # pass the player names? Think we use the slug.
+        context["session_name"] = self.kwargs["session"]
+        context["is_staff"] = self.request.user.is_staff
 
         return context
