@@ -55,16 +55,23 @@
                     {% for rank in rankings %}
                         <tr>
                           <td scope="row">{{ rank.position }}</td>
-                          <td>
+                          <td class="important-col">
                             {{ rank.name }}
-                            {% if is_staff %}
+                          </td>
+                          <td>
+                            {% if rank.count > 4 %}
+                              {{ rank.count }}
+                            {% endif %}
+                          </td>
+                          {% if is_staff %}
+                          <td>
                             <span class="ticket-control" data-name="{{ rank.id }}" data-session="{{ session_name }}">
                               <input type="number" name="quantity" min="1" value="1" hidden>
                               <i class="fas fa-check fa-lg" hidden></i>
                               <i class="fas fa-ticket-alt fa-lg"></i>
                             </span>
-                            {% endif %}
                           </td>
+                          {% endif %}
                         </tr>
                     {% endfor %}
                   </tbody>

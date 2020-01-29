@@ -40,4 +40,6 @@ body {
     width: 2.5em;
 }
 
-.ticket-control:hover 
+.important-col {
+    min-width: 10em;
+}
