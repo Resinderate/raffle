@@ -1,7 +1,8 @@
+from adminsortable.admin import SortableAdmin
 from django.contrib import admin
 
-from reports.models import Grade, Quote
+from reports.models import Section, Quote
 
 
-admin.site.register(Grade)
-admin.site.register(Quote)
+admin.site.register(Section, SortableAdmin)
+admin.site.register(Quote, SortableAdmin)
