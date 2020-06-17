@@ -29,15 +29,18 @@
         <input type="text" name="name" value="Ronan" id="name-input">
         <br>
         <br>
-        {% regroup quotes by section as quote_list %}
-        {% for section in quote_list %}
-          <h3 class="text-white text-center">{{ section.grouper }}</h3>
+        <!-- {% regroup quotes by section as quote_list %} -->
+        {% for section in sections %}
+          <h3 class="text-white text-center">{{ section.name }}</h3>
           <form>
-          {% for quote in section.list %}
+          {% for quote in section.quotes %}
             <!-- <h3><a href="/raffle/{{ class.slug }}/" class="text-white">• {{ grade.name }}</a></h3> -->
             <!-- <h3 class="text-white">• {{ quote.content }}</h3> -->
             <input class="quote-picker" type="checkbox" id="quote-{{quote.id}}" name="quote-{{quote.id}}" value="{{quote.content}}">
-            <label class="text-white" for="quote-{{quote.id}}">{{quote.content}}</label><br>
+            <label class="text-white" for="quote-{{quote.id}}">
+              ({% if quote.is_positive %}+{% else %}-{% endif %})
+              {{quote.content}}
+            </label><br>
           {% endfor %}
         {% endfor %}
         </form>
