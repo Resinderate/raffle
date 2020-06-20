@@ -11,7 +11,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'tickets/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'reports/reports.css' %}">
+    <!-- Bootstrap Toggle Plugin -->
+    <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
 
     <title>Reports</title>
   </head>
@@ -29,6 +31,21 @@
         <input type="text" name="name" value="Ronan" id="name-input">
         <br>
         <br>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender-check" id="female-radio" value="female" checked>
+          <label class="form-check-label" for="female-radio">
+            <span class="text-white">Female</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender-check" id="male-radio" value="male">
+          <label class="form-check-label" for="male-radio">
+            <span class="text-white">Male</span>
+          </label>
+        </div>
+        <br>
+        <br>
+
         <!-- {% regroup quotes by section as quote_list %} -->
         {% for section in sections %}
           <h3 class="text-white text-center">{{ section.name }}</h3>
@@ -48,6 +65,8 @@
         <textarea id="quote-output" rows="10" cols="100" readonly></textarea>
         <br>
         <button onclick="copyToClipboard()">Copy</button>
+        <br>
+        <br>
     </div>
 
     <!-- Optional JavaScript -->
@@ -57,6 +76,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Handlebars -->
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <!-- Bootstrap Toggle JS -->
+    <!-- <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> -->
+    <!-- Reports JS -->
     <script src="{% static 'reports/reports.js' %}"></script>
   </body>
 </html>
