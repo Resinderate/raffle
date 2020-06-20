@@ -9,7 +9,7 @@ class QuoteList(ListView):
     model = Quote
 
     def get_queryset(self):
-        self.sections = Section.objects.all().prefetch_related("quotes")
+        self.sections = Section.objects.all().order_by("order").prefetch_related("quotes")
         return self.sections
 
     def get_context_data(self, **kwargs):
