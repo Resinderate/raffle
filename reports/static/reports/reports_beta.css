@@ -1,0 +1,49 @@
+html {
+  /*height: 100%;*/
+}
+
+body {
+    /*min-height: 100%;*/
+    background-image: linear-gradient(315deg, rgb(112,128,144) 0%, rgb(47,79,79) 100%);
+}
+
+.breadcrumb {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: white;
+}
+
+
+.table-hover tbody tr td .ticket-control {
+  visibility: hidden;
+}
+
+.table-hover tbody tr:hover td .ticket-control {
+  /*background-color: rgba(0, 0, 0, .2);*/
+  visibility: visible;
+}
+
+
+
+.ticket-control {
+    float: right;
+}
+
+.ticket-control i {
+    cursor: pointer;
+}
+
+.ticket-control input[type=number] {
+    height: 1.5em;
+    width: 2.5em;
+}
+
+.important-col {
+    min-width: 10em;
+}
+
+.toast {
+  background-color: white;
+}
