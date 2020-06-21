@@ -59,7 +59,3 @@ $('input[type=radio][name=gender-check]').change(function() {
     gender = this.value;
     refreshQuoteOutput();
 });
-
-$(document).ready(function(){
-  $('.toast').toast({});
-});
