@@ -18,7 +18,3 @@ class QuoteList(ListView):
         for section in self.sections:
             context["sections"].append({"name": section.name, "quotes": section.quotes.all().order_by("-is_positive", "order")})
         return context
-
-
-class QuoteBeta(QuoteList):
-    template_name = "reports/quote_list_beta.html"

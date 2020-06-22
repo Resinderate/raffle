@@ -12,61 +12,68 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'reports/reports.css' %}">
-    <!-- Bootstrap Toggle Plugin -->
-    <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
 
     <title>Reports</title>
   </head>
   <body>
-    <div class="container">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="/raffle/" class="text-white">Home</a></li>
-          </ol>
-        </nav>
-        <h1 class="display-4 text-white text-center">Ms Andrews</h1>
-        <h2 class="display-4 text-white text-center">Quotes for Grade:</h2>
-
-        <label class="text-white" for="name">Name:</label><br>
-        <input type="text" name="name" value="" id="name-input">
-        <br>
-        <br>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender-check" id="female-radio" value="female" checked>
-          <label class="form-check-label" for="female-radio">
-            <span class="text-white">Female</span>
-          </label>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active"><a href="/raffle/" class="text-white">Home</a></li>
+            </ol>
+          </nav>
+          <h1 class="display-4 text-white text-center">Ms Andrews</h1>
+          <h2 class="display-4 text-white text-center">Quotes for Grade:</h2>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender-check" id="male-radio" value="male">
-          <label class="form-check-label" for="male-radio">
-            <span class="text-white">Male</span>
-          </label>
-        </div>
-        <br>
-        <br>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <label class="text-white" for="name">Name:</label>
+          <input type="text" name="name" value="" id="name-input">
+          <br>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender-check" id="female-radio" value="female" checked>
+            <label class="form-check-label" for="female-radio">
+              <span class="text-white">Female</span>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender-check" id="male-radio" value="male">
+            <label class="form-check-label" for="male-radio">
+              <span class="text-white">Male</span>
+            </label>
+          </div>
+          <br>
 
-        <!-- {% regroup quotes by section as quote_list %} -->
-        {% for section in sections %}
-          <h3 class="text-white text-center">{{ section.name }}</h3>
-          <form>
-          {% for quote in section.quotes %}
-            <!-- <h3><a href="/raffle/{{ class.slug }}/" class="text-white">• {{ grade.name }}</a></h3> -->
-            <!-- <h3 class="text-white">• {{ quote.content }}</h3> -->
-            <input class="quote-picker" type="checkbox" id="quote-{{quote.id}}" name="quote-{{quote.id}}" value="{{quote.content}}">
-            <label class="text-white" for="quote-{{quote.id}}">
-              ({% if quote.is_positive %}+{% else %}-{% endif %})
-              {{quote.content}}
-            </label><br>
+          {% for section in sections %}
+            <a data-toggle="collapse" href="#section-collapse-{{ section.name }}">
+              <h3 class="text-white text-center">
+                {{ section.name }}
+              </h3>
+            </a>
+            <form>
+              <div class="collapse" id="section-collapse-{{ section.name }}">
+                {% for quote in section.quotes %}
+                  <input class="quote-picker" type="checkbox" id="quote-{{quote.id}}" name="quote-{{quote.id}}" value="{{quote.content}}">
+                  <label class="text-white" for="quote-{{quote.id}}">
+                    ({% if quote.is_positive %}+{% else %}-{% endif %})
+                    {{quote.content}}
+                  </label><br>
+                {% endfor %}
+              </div>
+            </form>
           {% endfor %}
-        {% endfor %}
-        </form>
-
-        <textarea id="quote-output" rows="10" cols="100" readonly></textarea>
-        <br>
-        <button onclick="copyToClipboard()">Copy</button>
-        <br>
-        <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-4" style="position: fixed; right: 0px;">
+          <textarea id="quote-output" rows="20" cols="55"></textarea>
+          <br>
+          <button onclick="copyToClipboard()">Copy</button>
+        </div>
+      </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -76,8 +83,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Handlebars -->
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <!-- Bootstrap Toggle JS -->
-    <!-- <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> -->
     <!-- Reports JS -->
     <script src="{% static 'reports/reports.js' %}"></script>
   </body>
