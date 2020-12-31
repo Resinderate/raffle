@@ -22,13 +22,30 @@ $('#name-input').on('input', function() {
     refreshQuoteOutput();
 })
 
+$('#target-grade-input').change(function() {
+    refreshQuoteOutput();
+})
+
+$('#target-grade-input').on('input', function() {
+    refreshQuoteOutput();
+})
+
+$('#achieved-grade-input').change(function() {
+    refreshQuoteOutput();
+})
+
+$('#achieved-grade-input').on('input', function() {
+    refreshQuoteOutput();
+})
+
 function refreshQuoteOutput() {
     quotes = collectQuotes()
     var template = Handlebars.compile(quotes);
 
-    context = {name: getName()}
+    context = {name: getName(), ...getGrades()}
     p = pronouns[gender];
     context = {...context, ...p};
+    console.log("context:", context);
 
     output = template(context);
     $("textarea#quote-output").val(output);
@@ -36,6 +53,13 @@ function refreshQuoteOutput() {
 
 function getName() {
     return $("#name-input").val()
+}
+
+function getGrades() {
+    return {
+        target_grade: $("#target-grade-input").val(),
+        achieved_grade: $("#achieved-grade-input").val(),
+    }
 }
 
 function collectQuotes() {
