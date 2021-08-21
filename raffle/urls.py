@@ -3,8 +3,10 @@ from django.views.generic.base import RedirectView
 from django.urls import path
 
 from reports.views import QuoteList
+from reports.views_api import SectionsView
 from tickets.views import SessionView, ClassListView, ClassSessionListView
 from tickets.views_api import TicketsView
+
 
 urlpatterns = [
     path('raffle/api/tickets/', TicketsView.as_view()),
@@ -14,4 +16,5 @@ urlpatterns = [
     path('raffle/<slug:class>/<slug:session>/', SessionView.as_view()),
     path('', RedirectView.as_view(url='/raffle/')),
     path('reports/', QuoteList.as_view()),
+    path('reports/api/sections', SectionsView.as_view()),
 ]
