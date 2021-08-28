@@ -1,4 +1,4 @@
-from reports.models import Quote, Section
+from reports.models import Quote, Section, Tag
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 
@@ -16,7 +16,15 @@ class SectionSerializer(ModelSerializer):
         ).data
 
 
+class TagSerializer(ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ["name", "id"]
+
+
 class QuoteSerializer(ModelSerializer):
+    tags = TagSerializer(read_only=True, many=True)
+
     class Meta:
         model = Quote
-        fields = ["content", "is_positive", "id"]
+        fields = ["content", "is_positive", "id", "tags"]
