@@ -17,6 +17,9 @@ class Section(SortableMixin):
 class Tag(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 
 class Quote(SortableMixin):
     content = models.CharField(max_length=1500)
