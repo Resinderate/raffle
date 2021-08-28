@@ -5,7 +5,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 class SectionSerializer(ModelSerializer):
     class Meta:
         model = Section
-        fields = ["name", "quotes"]
+        fields = ["name", "quotes", "id"]
 
     quotes = SerializerMethodField()
 
@@ -19,4 +19,4 @@ class SectionSerializer(ModelSerializer):
 class QuoteSerializer(ModelSerializer):
     class Meta:
         model = Quote
-        fields = ["content", "is_positive"]
+        fields = ["content", "is_positive", "id"]
