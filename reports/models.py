@@ -26,7 +26,7 @@ class Quote(SortableMixin):
     section = SortableForeignKey(Section, on_delete=models.CASCADE, related_name="quotes")
     order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     is_positive = models.BooleanField(default=True)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     class Meta:
         ordering = ['order']
