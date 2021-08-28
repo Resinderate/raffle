@@ -14,11 +14,16 @@ class Section(SortableMixin):
         return self.name
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Quote(SortableMixin):
     content = models.CharField(max_length=1500)
     section = SortableForeignKey(Section, on_delete=models.CASCADE, related_name="quotes")
     order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     is_positive = models.BooleanField(default=True)
+    tags = models.ManyToManyField(Tag)
 
     class Meta:
         ordering = ['order']
