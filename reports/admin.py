@@ -6,6 +6,9 @@ from reports.models import Section, Quote, Tag
 
 
 class QuoteFormAdmin(admin.ModelAdmin):
+    list_display = ('content', 'section')
+    list_filter = ('section',)
+
     def get_form(self, request, obj=None, **kwargs):
         kwargs['widgets'] = {'content': forms.Textarea}
         return super().get_form(request, obj, **kwargs)
